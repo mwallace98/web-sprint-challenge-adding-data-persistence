@@ -17,7 +17,14 @@ exports.up = async function(knex) {
             table.string('resource_description')
         })
         .createTable('task',table => {
-            table.increments()
+            table.increments('task_id')
+            table.string('task_description').notNullable()
+            table.string('task_notes')
+            table.integer('task_completed').defaultTo(0)
+            table.integer('project_id')
+            .notNullable()
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
         })
         .createTable('resource_assignment',table => {
             table.increments()
