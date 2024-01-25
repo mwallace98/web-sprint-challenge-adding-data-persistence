@@ -12,7 +12,9 @@ exports.up = async function(knex) {
             
         })
         .createTable('resource',table => {
-            table.increments()
+            table.increments('resource_id')
+            table.string('resource_name').notNullable().unique()
+            table.string('resource_description')
         })
         .createTable('task',table => {
             table.increments()
