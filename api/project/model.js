@@ -1,10 +1,10 @@
 // build your `Project` model here
-// const db = require('../../data/dbConfig')
+const db = require('../../data/dbConfig')
 
-// const getAll = () => {
-//     return db('projects')
-// }
+const getAll = () => {
+    return db('projects')
+}
 
-// module.exports ={
-//     getAll
-// }
+module.exports ={
+    getAll
+}
