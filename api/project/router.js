@@ -13,7 +13,12 @@ router.post('/',async (req,res,next) => {
 router.get('/', async (req,res,next) => {
   try{
     const projects = await Project.getAll()
-    res.json(projects)
+    const projectsWithBooleanCompleted = projects.map(project => ({
+      ...project,
+      project_completed: Boolean(project.project_completed),
+    }));
+
+    res.json(projectsWithBooleanCompleted)
   }catch(err){
     next(err)
   }
