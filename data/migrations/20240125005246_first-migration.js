@@ -23,6 +23,10 @@ exports.up = async function(knex) {
             table.integer('task_completed').defaultTo(0)
             table.integer('project_id')
             .notNullable()
+            .references('project_id')
+            .inTable('projects')
+            .onDelete('CASCADE')
+            .onUpdate('CASCADE')
         })
         .createTable('project_resources',table => {
             table.increments('assignment_id')
