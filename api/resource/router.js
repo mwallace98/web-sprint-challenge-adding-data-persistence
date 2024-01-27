@@ -14,9 +14,10 @@ router.post('/', async (req,res,next) => {
     }
 })
 
-router.get('/',(req,res,next) => {
+router.get('/',async (req,res,next) => {
     try { 
-        res.json('get new resources')
+        const resources = await Router.getAll()
+        res.json(resources)
     } catch (err){
         next(err)
     }
