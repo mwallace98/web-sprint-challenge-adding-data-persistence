@@ -7,7 +7,12 @@ router.use(express.json())
 
 
 router.post('/',async (req,res,next) => {
-    res.json('posting new car')
+    try{
+      const newProduct = await Project.create(req.body)
+      res.status(201).json(newProduct)
+    }catch(err){
+      next(err)
+    }
 })
 
 router.get('/', async (req,res,next) => {
