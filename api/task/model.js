@@ -14,6 +14,16 @@ const getAll = () => {
     );
 }
 
+
+const create = async (taskData) => {
+    const [taskId] = await db('tasks').insert(taskData)
+    return findById(taskId)
+}
+
+const findById = async (taskId) => {
+    return db('tasks').where({ task_id: taskId }).first();
+  };
 module.exports = {
-    getAll
+    getAll,
+    create
 }

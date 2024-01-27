@@ -6,8 +6,12 @@ const Task = require('./model')
 
 router.use(express.json())
 
-router.post('/',(req,res,next) => {
-    res.json('post new task')
+router.post('/',async (req,res,next) => {
+    try{const newTask = await Task.create(req.body)
+    res.json(newTask)
+    } catch(err){
+        next(err)
+    }
 })
 
 
