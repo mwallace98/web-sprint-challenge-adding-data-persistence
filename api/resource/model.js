@@ -5,6 +5,17 @@ const getAll = () => {
     return db('resources')
 }
 
+const create = async (resourceData) => {
+    const[resourceId] = await db('resources').insert(resourceData)
+    return findById(resourceId)
+}
+
+const findById = async (resourceId) => {
+    return db('resources').where({ resource_id: resourceId }).first();
+  };
+
 module.exports ={
-    getAll
+    getAll,
+    create,
+    findById
 }

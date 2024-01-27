@@ -18,5 +18,6 @@ const findById = async (projectId) => {
 
 module.exports ={
     getAll,
-    create
+    create,
+    findById
 }
