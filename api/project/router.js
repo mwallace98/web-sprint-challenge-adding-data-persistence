@@ -9,7 +9,11 @@ router.use(express.json())
 router.post('/',async (req,res,next) => {
     try{
       const newProduct = await Project.create(req.body)
-      res.status(201).json(newProduct)
+      const projectBoolean = {
+        ...newProduct,
+        project_completed: Boolean(newProduct.project_completed)
+      }
+      res.status(201).json(projectBoolean)
     }catch(err){
       next(err)
     }

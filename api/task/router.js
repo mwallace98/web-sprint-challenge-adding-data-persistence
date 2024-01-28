@@ -8,7 +8,11 @@ router.use(express.json())
 
 router.post('/',async (req,res,next) => {
     try{const newTask = await Task.create(req.body)
-    res.json(newTask)
+        const booleanTask = {
+            ...newTask,
+            task_completed: Boolean(newTask.task_completed)
+        }
+    res.json(booleanTask)
     } catch(err){
         next(err)
     }
